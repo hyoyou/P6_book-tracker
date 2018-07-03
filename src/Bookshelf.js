@@ -8,6 +8,7 @@ class Bookshelf extends Component {
         <h2 className="bookshelf-title">Currently Reading</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
+            {/* map through list of books */}
             <li>
               <Book />
             </li>
