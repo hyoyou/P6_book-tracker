@@ -11,7 +11,9 @@ export default class Home extends Component {
         <div className="list-books-content">
           <div>
             <Bookshelf />
-            <div className="bookshelf">
+            <Bookshelf />
+            <Bookshelf />
+            {/* <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
@@ -114,7 +116,7 @@ export default class Home extends Component {
                   </li>
                 </ol>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="open-search">
