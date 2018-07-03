@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
-import Home from './Home'
+import Bookshelf from './Bookshelf'
 import Search from './Search'
 
 class BooksApp extends React.Component {
@@ -11,10 +11,19 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  async componentDidMount() {
+    try {
+      const books = await BooksAPI.getAll();
+      this.setState({ books });
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
   render() {
     return (
       <div className="app">
-        <Route exact path='/' render={() => (<Home books={this.state.books} />)} />
+        <Route exact path='/' render={() => (<Bookshelf books={this.state.books} />)} />
         <Route path='/search' render={() => (<Search books={this.state.books} />)} />
       </div>
     )
