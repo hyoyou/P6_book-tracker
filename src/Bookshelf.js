@@ -16,7 +16,11 @@ class Bookshelf extends Component {
           return (
             <div className="list-books-content" key={shelf}>
               <div className="bookshelf">
-                <h2 className="bookshelf-title">{shelf}</h2>
+                <h2 className="bookshelf-title">
+                  {shelf === 'currentlyReading' && 'Currently Reading'}
+                  {shelf === 'wantToRead' && 'Want To Read'}
+                  {shelf === 'read' && 'Read'}
+                </h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                     {this.props.books.map(book => {
