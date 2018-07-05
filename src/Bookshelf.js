@@ -6,7 +6,11 @@ const shelves = ['currentlyReading', 'wantToRead', 'read'];
 
 class Bookshelf extends Component {
   render() {
-    console.log(this.props.books)
+    // const { book } = this.props;
+    // const currentlyReading = books.filter(book => book.shelf === 'currentlyReading');
+    // const wantToRead = books.filter(book => book.shelf === 'wantToRead');
+    // const read = books.filter(book => book.shelf === 'read');
+
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -25,7 +29,7 @@ class Bookshelf extends Component {
                   <ol className="books-grid">
                     {this.props.books.map(book => {
                       if (book.shelf === shelf) {
-                        return <li><Book book={book} shelf={shelf} key={book.id} /></li>
+                        return <li key={book.id}><Book book={book} shelf={shelf} moveBook={this.props.moveBook}/></li>
                       }
                     })}
                   </ol>
