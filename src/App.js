@@ -13,14 +13,11 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll()
-    .then(books => {
-      console.log(books)
-      this.setState({ books })
-    })
-    .catch(error => console.error(error));
+    .then(books => this.setState({ books }))
+    .catch(error => console.error(error))
   }
 
-  moveBook = async(book, shelf) => {
+  moveBook = (book, shelf) => {
     BooksAPI.update(book, shelf)
     BooksAPI.getAll()
     .then(books => this.setState({ books }))
