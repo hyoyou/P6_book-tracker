@@ -9,12 +9,31 @@ export default class Search extends Component {
   }
 
   onInput = event => {
-    BooksAPI.search(event.target.value)
-    .then(results => this.setState({ results }))
+    BooksAPI.search(event.target.value.trim())
+    .then(results => {
+      this.filterShelf(results)
+      this.setState({ results })
+    })
     .catch(error => console.log(error))
   }
 
+  filterShelf = books => {
+    books.map(book => {
+      let shelvedBook = this.props.books.find(userBook => {
+        return userBook.id === book.id
+      })
+
+      if (shelvedBook) {
+        book.shelf = shelvedBook.shelf;
+      } else {
+        book.shelf = "none";
+      }
+    })
+  }
+
   render() {
+    const { results } = this.state;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -25,10 +44,10 @@ export default class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {!this.state.results ?
+            {!results ?
               <h2>No results</h2>
               :
-              this.state.results.length > 0 && this.state.results.map(book => {
+              results.length > 0 && results.map(book => {
                 return <li key={book.id}><Book book={book} moveBook={this.props.moveBook}/></li>
               })
             }
