@@ -8,7 +8,7 @@ const Bookshelf = ({ books, moveBook }) => {
   return (
     <div className="list-books">
       <div className="list-books-title">
-        <h1>MyReads</h1>
+        <h1>My Reading List</h1>
       </div>
       {shelves.map(shelf => {
         return (
