@@ -8,15 +8,21 @@ export default class Search extends Component {
     results: []
   }
 
+  // Send fetch requests to search for query on input
   onInput = event => {
-    BooksAPI.search(event.target.value.trim())
+    BooksAPI.search(event.target.value)
     .then(results => {
-      this.filterShelf(results)
-      this.setState({ results })
+      if (results) {
+        this.filterShelf(results)
+        this.setState({ results })
+      } else {
+        this.setState({ results: [] })
+      }
     })
     .catch(error => console.log(error))
   }
 
+  // Check results from fetch request against user's books, add appropriate shelf to each book
   filterShelf = books => {
     books.map(book => {
       let shelvedBook = this.props.books.find(userBook => {
@@ -44,7 +50,7 @@ export default class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {!results ?
+            {results.length === 0 ?
               <h2>No results</h2>
               :
               results.length > 0 && results.map(book => {

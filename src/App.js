@@ -11,12 +11,14 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  // When component mounts, fetch all books from API and update state
   componentDidMount() {
     BooksAPI.getAll()
     .then(books => this.setState({ books }))
     .catch(error => console.error(error))
   }
 
+  // Function to update shelf
   moveBook = (book, shelf) => {
     BooksAPI.update(book, shelf)
     BooksAPI.getAll()
